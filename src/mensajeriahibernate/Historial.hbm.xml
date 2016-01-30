@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-nov-2015 18:40:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mensajeriahibernate.Historial" table="historial" catalog="mensajeria" optimistic-lock="version">
+        <id name="idHistorial" type="int">
+            <column name="idHistorial" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="mensajeriahibernate.Usuario" fetch="select">
+            <column name="usuario" length="20" not-null="true" />
+        </many-to-one>
+        <property name="tipoConsulta" type="char">
+            <column name="tipoConsulta" length="1" not-null="true" />
+        </property>
+        <property name="fecha" type="string">
+            <column name="fecha" length="12" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

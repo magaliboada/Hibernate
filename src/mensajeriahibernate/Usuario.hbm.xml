@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-nov-2015 18:40:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="mensajeriahibernate.Usuario" table="usuario" catalog="mensajeria" optimistic-lock="version">
+        <id name="usuario" type="string">
+            <column name="usuario" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="40" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <set name="mensajesesForEmisor" table="mensajes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="emisor" length="20" not-null="true" />
+            </key>
+            <one-to-many class="mensajeriahibernate.Mensajes" />
+        </set>
+        <set name="mensajesesForReceptor" table="mensajes" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="receptor" length="20" not-null="true" />
+            </key>
+            <one-to-many class="mensajeriahibernate.Mensajes" />
+        </set>
+        <set name="historials" table="historial" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="usuario" length="20" not-null="true" />
+            </key>
+            <one-to-many class="mensajeriahibernate.Historial" />
+        </set>
+    </class>
+</hibernate-mapping>
